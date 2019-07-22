@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Router, Route, Link } from 'react-router';
+import {Link} from 'react-router-dom';
 
 class Master extends Component {
     render() {
@@ -11,10 +11,10 @@ class Master extends Component {
                         <a className="navbar-brand" href="#">AppDividend</a>
                         </div>
                         <ul className="nav navbar-nav">
-                        <li className="active"><a href="#">Home</a></li>
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
+                            <li className="active"><Link to='/'>Home</Link></li>
+                            <li><Link to='/add-item'>Create Item</Link></li>
+                            <li><Link to='/list-items'>List Item</Link></li>
+                            <li><a href="#">Page 3</a></li>
                         </ul>
                     </div>
                 </nav>
