@@ -34,14 +34,13 @@ class CreateItem extends Component {
         }
         let uri = 'http://localhost:8000/items';
         axios.post(uri, product).then((response) => {
-            console.log(response);
-            alert("Success")
+            this.props.history.push("/list-items");
         });
     }
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>
                     Create An Item
                 </h1>

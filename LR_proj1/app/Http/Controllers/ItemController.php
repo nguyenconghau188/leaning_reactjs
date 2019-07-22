@@ -79,6 +79,12 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $item = Item::find($id);
+        $item->product_name = $request->get('productName');
+        $item->product_price = $request->get('productPrice');
+        $item->save();
+
+        return response()->json("Update success!");
     }
 
     /**
@@ -90,5 +96,9 @@ class ItemController extends Controller
     public function destroy($id)
     {
         //
+        $item = Item::find($id);
+        $item->delete();
+
+        return response()->json("Delete success!");
     }
 }
