@@ -1,0 +1,22 @@
+#content {
+  border: solid 3px red;
+  padding: 5px;
+}
+
+.btn-success {
+  margin: 5px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.active {
+  border: solid 3px black;
+}
+
+span {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
