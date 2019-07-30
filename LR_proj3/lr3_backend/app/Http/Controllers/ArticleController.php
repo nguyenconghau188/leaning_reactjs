@@ -37,7 +37,8 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //
-        return Article::create($request->all());
+        $article = Article::create($request->all());
+        return response()->json($article, 201);
     }
 
     /**
@@ -76,7 +77,7 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         $article->update($request->all());
 
-        return $article;
+        return response()->json($article, 200);
     }
 
     /**
@@ -91,6 +92,6 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         $article->delete();
 
-        return 204;
+        return response()->json(null, 204);
     }
 }
