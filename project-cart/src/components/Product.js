@@ -43,9 +43,9 @@ export default class Product extends Component {
         var result = [];
         for (var i = 1; i <= 5; i++) {
             if (i <= rating) {
-                result.push(<li><i className="fa fa-star"></i></li>);
+                result.push(<li key={i}><i className="fa fa-star"></i></li>);
             } else {
-                result.push(<li><i className="fa fa-star-o"></i></li>);
+                result.push(<li key={i}><i key={i} className="fa fa-star-o"></i></li>);
             }
         }
         return result;
