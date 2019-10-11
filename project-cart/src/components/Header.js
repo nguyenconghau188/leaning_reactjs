@@ -25,7 +25,7 @@ export default class Header extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a classNameName="icons-sm gplus-ic">
+                                <a className="icons-sm gplus-ic">
                                     <i className="fa fa-google-plus"> </i>
                                 </a>
                             </li>
