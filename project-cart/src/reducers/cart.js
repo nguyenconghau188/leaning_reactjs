@@ -13,6 +13,18 @@ var initialState = [
             rating: 5
         },
         quantity: 5
+    },
+    {
+        product: {
+            id: 2,
+            name: 'Samsung Galaxy S10',
+            image: 'https://cdn.fptshop.com.vn/Uploads/Originals/2019/2/21/636863643187455627_ss-galaxy-s10-trang-1.png',
+            description: 'Sản phẩm do Samsung sản xuất',
+            price: 900,
+            inventory: 15, 
+            rating: 5
+        }, 
+        quantity: 3
     }
 ];
 
