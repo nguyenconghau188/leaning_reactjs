@@ -40,7 +40,7 @@ class CartContainer extends Component {
                 <CartResult 
                     cart = {cart}
                 />
-            )
+            );
         }
         return result;
     }
