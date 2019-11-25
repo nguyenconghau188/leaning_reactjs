@@ -5,20 +5,21 @@ import Cart from '../components/Cart';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
 import * as Messages from '../constants/Messages';
+import { actDeleteProductInCart } from '../actions';
 
 class CartContainer extends Component {
     render() {
-        var { cart } = this.props;
+        var { cart, onDeleteItemInCart } = this.props;
         return (
             <Cart>
-                {this.showCartItem(cart)}
+                {this.showCartItem(cart, onDeleteItemInCart)}
                 {this.showTotalAmount(cart)}
             </Cart>
         );
     }
 
-    showCartItem = (cart) => {
-        var result = Messages.MSG_CART_EMPTY;
+    showCartItem = (cart, onDeleteItemInCart) => {
+        var result = <tr><td>{Messages.MSG_CART_EMPTY}</td></tr>;
         if (cart.length > 0) {
             result = cart.map((item, index) => {
                 return (
@@ -26,6 +27,7 @@ class CartContainer extends Component {
                         key = {index}
                         item = {item}
                         index = {index}
+                        onDeleteItemInCart = {onDeleteItemInCart}
                     />
                 );
             });
@@ -58,7 +60,8 @@ CartContainer.propTypes = {
             rating: PropTypes.number.isRequired
         }).isRequired,
         quantity: PropTypes.number.isRequired
-    })).isRequired
+    })).isRequired,
+    onDeleteItemInCart: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -67,4 +70,12 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(CartContainer);
+const mapDispathToProps = (dispatch, props) => {
+    return {
+        onDeleteItemInCart: (product) => {
+            dispatch(actDeleteProductInCart(product));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispathToProps)(CartContainer);

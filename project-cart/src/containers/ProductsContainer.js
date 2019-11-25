@@ -46,7 +46,7 @@ ProductsContainer.propTypes = {
             rating: PropTypes.number.isRequired
         })
     ).isRequired,
-    message: PropTypes.func.isRequired
+    onChangeMessage: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {

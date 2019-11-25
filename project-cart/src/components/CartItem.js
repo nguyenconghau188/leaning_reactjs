@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class CartItem extends Component {
     render() {
-        var {item} = this.props;
+        var { item } = this.props;
         return (
             <tr>
                 <th scope="row">
@@ -27,11 +27,24 @@ export default class CartItem extends Component {
                 </td>
                 <td>{item.quantity * item.product.price}$ </td>
                 <td>
-                    <button type="button" className="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove item">
+                    <button 
+                        type="button" 
+                        className="btn btn-sm btn-primary waves-effect waves-light" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="" 
+                        data-original-title="Remove item"
+                        onClick={ () => {this.onDeleteItem(item.product)}}
+                    >
                         X
                     </button>
                 </td>
             </tr>
         );
+    }
+
+    onDeleteItem = (product) => {
+        var { onDeleteItemInCart } = this.props;
+        onDeleteItemInCart(product);
     }
 }
