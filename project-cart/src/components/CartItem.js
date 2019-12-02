@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Messages from '../constants/Messages';
 
 export default class CartItem extends Component {
     render() {
@@ -44,7 +45,8 @@ export default class CartItem extends Component {
     }
 
     onDeleteItem = (product) => {
-        var { onDeleteItemInCart } = this.props;
+        var { onDeleteItemInCart, onChangeMessageWhenDeleteProduct } = this.props;
         onDeleteItemInCart(product);
+        onChangeMessageWhenDeleteProduct(Messages.MSG_DELETE_ITEM_IN_CART_SUCCESS);
     }
 }
