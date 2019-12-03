@@ -5,20 +5,20 @@ import Cart from '../components/Cart';
 import CartItem from '../components/CartItem';
 import CartResult from '../components/CartResult';
 import * as Messages from '../constants/Messages';
-import { actDeleteProductInCart, actChangeMessage } from '../actions';
+import { actDeleteProductInCart, actChangeMessage, actUpdateQuantityInCart } from '../actions';
 
 class CartContainer extends Component {
     render() {
-        var { cart, onDeleteItemInCart, onChangeMessageWhenDeleteProduct } = this.props;
+        var { cart, onDeleteItemInCart, onChangeMessageWhenDeleteProduct, onUpdateQuantityInCart } = this.props;
         return (
             <Cart>
-                {this.showCartItem(cart, onDeleteItemInCart, onChangeMessageWhenDeleteProduct)}
+                {this.showCartItem(cart, onDeleteItemInCart, onChangeMessageWhenDeleteProduct, onUpdateQuantityInCart)}
                 {this.showTotalAmount(cart)}
             </Cart>
         );
     }
 
-    showCartItem = (cart, onDeleteItemInCart, onChangeMessageWhenDeleteProduct) => {
+    showCartItem = (cart, onDeleteItemInCart, onChangeMessageWhenDeleteProduct, onUpdateQuantityInCart) => {
         var result = <tr><td>{Messages.MSG_CART_EMPTY}</td></tr>;
         if (cart.length > 0) {
             result = cart.map((item, index) => {
@@ -29,6 +29,7 @@ class CartContainer extends Component {
                         index = {index}
                         onDeleteItemInCart = {onDeleteItemInCart}
                         onChangeMessageWhenDeleteProduct = {onChangeMessageWhenDeleteProduct}
+                        onUpdateQuantityInCart = {onUpdateQuantityInCart}
                     />
                 );
             });
@@ -63,7 +64,8 @@ CartContainer.propTypes = {
         quantity: PropTypes.number.isRequired
     })).isRequired,
     onDeleteItemInCart: PropTypes.func.isRequired,
-    onChangeMessageWhenDelete: PropTypes.func.isRequired,
+    onChangeMessageWhenDeleteProduct: PropTypes.func.isRequired,
+    onUpdateQuantityInCart: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -79,6 +81,9 @@ const mapDispathToProps = (dispatch, props) => {
         },
         onChangeMessageWhenDeleteProduct: (message) => {
             dispatch(actChangeMessage(message));
+        },
+        onUpdateQuantityInCart: (item, quantity) => {
+            dispatch(actUpdateQuantityInCart(item.product, quantity));
         }
     }
 }

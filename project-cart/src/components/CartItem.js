@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import * as Messages from '../constants/Messages';
 
 export default class CartItem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            quantity: 1
+        }
+    }
+
     render() {
         var { item } = this.props;
+        var quantity = item.quantity > 1 ? item.quantity : this.state.quantity;
         return (
             <tr>
                 <th scope="row">
@@ -16,12 +25,18 @@ export default class CartItem extends Component {
                 </td>
                 <td>{item.product.price}$</td>
                 <td className="center-on-small-only">
-                    <span className="qty">{item.quantity} </span>
+                    <span className="qty">{quantity} </span>
                     <div className="btn-group radio-group" data-toggle="buttons">
-                        <label className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
+                        <label 
+                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
+                            onClick={ () => {this.onUpdateQuantity(item, quantity-1)}}
+                        >
                             <a>—</a>
                         </label>
-                        <label className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
+                        <label 
+                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
+                            onClick={ () => {this.onUpdateQuantity(item, quantity+1)}}
+                        >
                             <a>+</a>
                         </label>
                     </div>
@@ -42,6 +57,16 @@ export default class CartItem extends Component {
                 </td>
             </tr>
         );
+    }
+
+    onUpdateQuantity = (product, quantity) => {
+        if (quantity > 0) {
+            var {onUpdateQuantityInCart} = this.props;
+            this.setState({
+                quantity: quantity,
+            });
+            onUpdateQuantityInCart(product, quantity);
+        }
     }
 
     onDeleteItem = (product) => {
